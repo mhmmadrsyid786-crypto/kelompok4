@@ -13,7 +13,7 @@
                             <th>Kategori</th>
                             <th>Kalori</th>
                             <th>Protein (g)</th>
-                            <th>Status</th>
+                            <th>Deskripsi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -26,9 +26,9 @@
                             <td><?= $m['kategori']; ?></td>
                             <td><?= $m['kalori']; ?> kcal</td>
                             <td><?= $m['protein']; ?></td>
-                            <td style="text-transform: capitalize;"><?= $m['status']; ?></td>
+                            <td><?= $m['deskripsi']; ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $m['id_menu']; ?>', '<?= htmlspecialchars($m['nama_menu'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['jenjang'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['kategori'], ENT_QUOTES); ?>', '<?= $m['kalori']; ?>', '<?= $m['protein']; ?>', '<?= $m['status']; ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="#" onclick="openUpdateModal('<?= $m['id_menu']; ?>', '<?= htmlspecialchars($m['nama_menu'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['jenjang'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['kategori'], ENT_QUOTES); ?>', '<?= $m['kalori']; ?>', '<?= $m['protein']; ?>', '<?= htmlspecialchars($m['deskripsi'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
                                 <a href="<?= BASEURL; ?>/menu/hapus/<?= $m['id_menu']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
@@ -65,11 +65,8 @@
                         <input type="number" step="0.1" name="protein" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Status</label>
-                        <select name="status" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="aktif">Aktif</option>
-                            <option value="nonaktif">Nonaktif</option>
-                        </select>
+                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Deskripsi</label>
+                        <textarea name="deskripsi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary); height:80px;"></textarea>
                     </div>
                     <div style="text-align: right;">
                         <button type="button" onclick="document.getElementById('modalTambah').style.display='none'" style="background:transparent; border:1px solid var(--text-secondary); color:var(--text-secondary); padding:10px 20px; border-radius:8px; cursor:pointer; margin-right:10px;">Batal</button>
@@ -107,11 +104,8 @@
                         <input type="number" step="0.1" name="protein" id="edit_protein" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                     </div>
                     <div style="margin-bottom: 20px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Status</label>
-                        <select name="status" id="edit_status" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="aktif">Aktif</option>
-                            <option value="nonaktif">Nonaktif</option>
-                        </select>
+                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Deskripsi</label>
+                        <textarea name="deskripsi" id="edit_deskripsi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary); height:80px;"></textarea>
                     </div>
                     <div style="text-align: right;">
                         <button type="button" onclick="document.getElementById('modalEdit').style.display='none'" style="background:transparent; border:1px solid var(--text-secondary); color:var(--text-secondary); padding:10px 20px; border-radius:8px; cursor:pointer; margin-right:10px;">Batal</button>
@@ -122,7 +116,7 @@
         </div>
 
         <script>
-            function openUpdateModal(id, nama, jenjang, kategori, kalori, protein, status) {
+            function openUpdateModal(id, nama, jenjang, kategori, kalori, protein, deskripsi) {
                 document.getElementById('modalEdit').style.display = 'flex';
                 document.getElementById('edit_id').value = id;
                 document.getElementById('edit_nama').value = nama;
@@ -130,6 +124,6 @@
                 document.getElementById('edit_kategori').value = kategori;
                 document.getElementById('edit_kalori').value = kalori;
                 document.getElementById('edit_protein').value = protein;
-                document.getElementById('edit_status').value = status;
+                document.getElementById('edit_deskripsi').value = deskripsi;
             }
         </script>

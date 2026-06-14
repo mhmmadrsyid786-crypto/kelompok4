@@ -4,17 +4,16 @@ class Siswa_model {
     private $db;
     public function __construct() { $this->db = new Database; }
     public function getAllSiswa() {
-        $this->db->query('SELECT * FROM ' . $this->table . ' ORDER BY nama_siswa ASC');
+        $this->db->query('SELECT siswa.*, master_sekolah.nama_sekolah FROM ' . $this->table . ' LEFT JOIN master_sekolah ON siswa.id_sekolah = master_sekolah.id_sekolah ORDER BY siswa.nama_siswa ASC');
         return $this->db->resultSet();
     }
 
     public function tambahDataSiswa($data) {
-        $query = "INSERT INTO " . $this->table . " (nis, nama_siswa, jenjang, kelas, jenis_kelamin) VALUES (:nis, :nama_siswa, :jenjang, :kelas, :jenis_kelamin)";
+        $query = "INSERT INTO " . $this->table . " (nis, nama_siswa, id_sekolah, jenis_kelamin) VALUES (:nis, :nama_siswa, :id_sekolah, :jenis_kelamin)";
         $this->db->query($query);
         $this->db->bind('nis', $data['nis']);
         $this->db->bind('nama_siswa', $data['nama_siswa']);
-        $this->db->bind('jenjang', $data['jenjang']);
-        $this->db->bind('kelas', $data['kelas']);
+        $this->db->bind('id_sekolah', $data['id_sekolah']);
         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
         $this->db->execute();
         return $this->db->rowCount();
@@ -29,12 +28,11 @@ class Siswa_model {
     }
 
     public function ubahDataSiswa($data) {
-        $query = "UPDATE " . $this->table . " SET nis = :nis, nama_siswa = :nama_siswa, jenjang = :jenjang, kelas = :kelas, jenis_kelamin = :jenis_kelamin WHERE id_siswa = :id_siswa";
+        $query = "UPDATE " . $this->table . " SET nis = :nis, nama_siswa = :nama_siswa, id_sekolah = :id_sekolah, jenis_kelamin = :jenis_kelamin WHERE id_siswa = :id_siswa";
         $this->db->query($query);
         $this->db->bind('nis', $data['nis']);
         $this->db->bind('nama_siswa', $data['nama_siswa']);
-        $this->db->bind('jenjang', $data['jenjang']);
-        $this->db->bind('kelas', $data['kelas']);
+        $this->db->bind('id_sekolah', $data['id_sekolah']);
         $this->db->bind('jenis_kelamin', $data['jenis_kelamin']);
         $this->db->bind('id_siswa', $data['id_siswa']);
         $this->db->execute();

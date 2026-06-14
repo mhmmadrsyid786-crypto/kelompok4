@@ -14,6 +14,7 @@ class Menu extends Controller {
 
     public function tambah() {
         if($this->model('Menu_model')->tambahDataMenu($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Menambahkan data menu baru: " . $_POST['nama_menu']);
             $_SESSION['flash'] = 'Berhasil ditambahkan';
         } else {
             $_SESSION['flash'] = 'Gagal ditambahkan';
@@ -24,6 +25,7 @@ class Menu extends Controller {
 
     public function hapus($id) {
         if($this->model('Menu_model')->hapusDataMenu($id) > 0) {
+            $this->model('Log_model')->catatLog("Menghapus data menu ID: " . $id);
             $_SESSION['flash'] = 'Berhasil dihapus';
         } else {
             $_SESSION['flash'] = 'Gagal dihapus';
@@ -34,6 +36,7 @@ class Menu extends Controller {
 
     public function ubah() {
         if($this->model('Menu_model')->ubahDataMenu($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Mengubah data menu ID: " . $_POST['id_menu']);
             $_SESSION['flash'] = 'Berhasil diubah';
         } else {
             $_SESSION['flash'] = 'Gagal diubah';

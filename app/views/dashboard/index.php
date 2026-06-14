@@ -27,7 +27,7 @@
                 <canvas id="genderChart"></canvas>
             </div>
             <div class="glass-panel-widget" style="height: 350px;">
-                <h4 style="color: var(--text-primary); margin-bottom: 15px; font-family: 'Outfit'; text-align:center;">Tingkat Keparahan Alergi</h4>
+                <h4 style="color: var(--text-primary); margin-bottom: 15px; font-family: 'Outfit'; text-align:center;">Alergi per Sekolah</h4>
                 <canvas id="alergiChart"></canvas>
             </div>
             <div class="glass-panel-widget" style="grid-column: 1 / -1; height: 350px;">
@@ -61,10 +61,10 @@
             new Chart(document.getElementById('alergiChart'), {
                 type: 'pie',
                 data: {
-                    labels: rawAlergi.map(item => 'Resiko ' + item.tingkat_alergi),
+                    labels: rawAlergi.map(item => item.sekolah),
                     datasets: [{
                         data: rawAlergi.map(item => item.jumlah),
-                        backgroundColor: ['#86efac', '#fde047', '#fca5a5'],
+                        backgroundColor: ['#38bdf8', '#86efac', '#fde047', '#fca5a5', '#c084fc', '#fb923c'],
                         borderWidth: 0
                     }]
                 },

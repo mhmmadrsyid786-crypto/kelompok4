@@ -1,0 +1,66 @@
+[
+    {
+        "Field": "id_siswa",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": "auto_increment"
+    },
+    {
+        "Field": "nis",
+        "Type": "varchar(30)",
+        "Null": "NO",
+        "Key": "UNI",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "nama_siswa",
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "kelas",
+        "Type": "varchar(20)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "jenis_kelamin",
+        "Type": "enum('L','P')",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "status",
+        "Type": "enum('Aktif','Nonaktif')",
+        "Null": "YES",
+        "Key": "",
+        "Default": "Aktif",
+        "Extra": ""
+    },
+    {
+        "Field": "created_at",
+        "Type": "timestamp",
+        "Null": "NO",
+        "Key": "",
+        "Default": "CURRENT_TIMESTAMP",
+        "Extra": ""
+    },
+    {
+        "Field": "id_sekolah",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+    }
+]

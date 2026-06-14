@@ -1,0 +1,34 @@
+[
+    {
+        "Field": "id_siswa_menu",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": "auto_increment"
+    },
+    {
+        "Field": "id_siswa",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "id_menu",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "MUL",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "tanggal",
+        "Type": "date",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    }
+]

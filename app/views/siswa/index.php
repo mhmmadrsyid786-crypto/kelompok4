@@ -10,8 +10,7 @@
                             <th>No</th>
                             <th>NIS</th>
                             <th>Nama</th>
-                            <th>Jenjang</th>
-                            <th>Kelas</th>
+                            <th>Sekolah</th>
                             <th>L/P</th>
                             <th>Aksi</th>
                         </tr>
@@ -22,11 +21,10 @@
                             <td><?= $i++; ?></td>
                             <td><?= $s['nis']; ?></td>
                             <td><?= $s['nama_siswa']; ?></td>
-                            <td><?= $s['jenjang']; ?></td>
-                            <td><?= $s['kelas']; ?></td>
+                            <td><?= $s['nama_sekolah']; ?></td>
                             <td><?= $s['jenis_kelamin']; ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $s['id_siswa']; ?>', '<?= htmlspecialchars($s['nis'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_siswa'], ENT_QUOTES); ?>', '<?= $s['jenjang']; ?>', '<?= $s['kelas']; ?>', '<?= $s['jenis_kelamin']; ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="#" onclick="openUpdateModal('<?= $s['id_siswa']; ?>', '<?= htmlspecialchars($s['nis'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_siswa'], ENT_QUOTES); ?>', '<?= $s['id_sekolah']; ?>', '<?= $s['jenis_kelamin']; ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
                                 <a href="<?= BASEURL; ?>/siswa/hapus/<?= $s['id_siswa']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus siswa ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
@@ -52,13 +50,15 @@
                         <input type="text" name="nama_siswa" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                     </div>
                     <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Jenjang (Contoh: SD, SMP, SMA)</label>
-                        <input type="text" name="jenjang" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
+                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Sekolah</label>
+                        <select name="id_sekolah" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
+                            <option value="">-- Pilih Sekolah --</option>
+                            <?php foreach($data['sekolah'] as $sek) : ?>
+                                <option value="<?= $sek['id_sekolah']; ?>"><?= $sek['nama_sekolah']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Kelas (Contoh: 1A, 2B)</label>
-                        <input type="text" name="kelas" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                    </div>
+
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Jenis Kelamin</label>
                         <select name="jenis_kelamin" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -90,13 +90,15 @@
                         <input type="text" name="nama_siswa" id="edit_nama" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                     </div>
                     <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Jenjang</label>
-                        <input type="text" name="jenjang" id="edit_jenjang" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
+                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Sekolah</label>
+                        <select name="id_sekolah" id="edit_id_sekolah" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
+                            <option value="">-- Pilih Sekolah --</option>
+                            <?php foreach($data['sekolah'] as $sek) : ?>
+                                <option value="<?= $sek['id_sekolah']; ?>"><?= $sek['nama_sekolah']; ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Kelas</label>
-                        <input type="text" name="kelas" id="edit_kelas" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                    </div>
+
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Jenis Kelamin</label>
                         <select name="jenis_kelamin" id="edit_jk" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -113,13 +115,12 @@
         </div>
 
         <script>
-            function openUpdateModal(id, nis, nama, jenjang, kelas, jk) {
+            function openUpdateModal(id, nis, nama, id_sekolah, jk) {
                 document.getElementById('modalEdit').style.display = 'flex';
                 document.getElementById('edit_id').value = id;
                 document.getElementById('edit_nis').value = nis;
                 document.getElementById('edit_nama').value = nama;
-                document.getElementById('edit_jenjang').value = jenjang;
-                document.getElementById('edit_kelas').value = kelas;
+                document.getElementById('edit_id_sekolah').value = id_sekolah;
                 document.getElementById('edit_jk').value = jk;
             }
         </script>

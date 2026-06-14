@@ -22,6 +22,7 @@ class Auth extends Controller {
             $_SESSION['user_id'] = $user['id_user'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['role'] = $user['role'];
+            $this->model('Log_model')->catatLog("Login ke dalam sistem");
             header('Location: ' . BASEURL . '/dashboard');
             exit;
         } else {
@@ -32,6 +33,9 @@ class Auth extends Controller {
     }
 
     public function logout() {
+        if(isset($_SESSION['user_id'])) {
+            $this->model('Log_model')->catatLog("Logout dari sistem");
+        }
         session_destroy();
         header('Location: ' . BASEURL);
         exit;

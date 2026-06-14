@@ -14,6 +14,7 @@ class Alergi extends Controller {
 
     public function tambah() {
         if($this->model('Alergi_model')->tambahDataAlergi($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Menambahkan master alergi baru: " . $_POST['nama_alergi']);
             header('Location: ' . BASEURL . '/alergi');
             exit;
         } else {
@@ -24,6 +25,7 @@ class Alergi extends Controller {
 
     public function hapus($id) {
         if($this->model('Alergi_model')->hapusDataAlergi($id) > 0) {
+            $this->model('Log_model')->catatLog("Menghapus master alergi ID: " . $id);
             header('Location: ' . BASEURL . '/alergi');
             exit;
         } else {
@@ -34,6 +36,7 @@ class Alergi extends Controller {
 
     public function ubah() {
         if($this->model('Alergi_model')->ubahDataAlergi($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Mengubah master alergi ID: " . $_POST['id_alergi']);
             header('Location: ' . BASEURL . '/alergi');
             exit;
         } else {

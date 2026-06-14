@@ -63,6 +63,7 @@
             gap: 5px;
             flex-grow: 1;
             overflow-y: auto;
+            overflow-x: hidden;
         }
 
         /* Hide scrollbar for nav-menu */
@@ -241,6 +242,7 @@
             <a href="<?= BASEURL; ?>/dashboard" class="nav-link <?= strpos($activePage, 'Dashboard') !== false ? 'active' : ''; ?>">Dashboard</a>
             
             <div class="nav-label">Master Data</div>
+            <a href="<?= BASEURL; ?>/MasterSekolah" class="nav-link <?= strpos($activePage, 'Sekolah') !== false ? 'active' : ''; ?>">Master Sekolah</a>
             <a href="<?= BASEURL; ?>/users" class="nav-link <?= strpos($activePage, 'Users') !== false ? 'active' : ''; ?>">Data Users</a>
             <a href="<?= BASEURL; ?>/siswa_menu" class="nav-link <?= strpos($activePage, 'Menu Siswa') !== false ? 'active' : ''; ?>">Relasi Siswa & Menu</a>
             <a href="<?= BASEURL; ?>/siswa" class="nav-link <?= strpos($activePage, 'Siswa') !== false && strpos($activePage, 'Alergi') === false ? 'active' : ''; ?>">Data Siswa</a>

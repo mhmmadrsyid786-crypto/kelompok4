@@ -16,6 +16,7 @@ class Menu_alergen extends Controller {
 
     public function tambah() {
         if($this->model('MenuAlergen_model')->tambahDataMenuAlergen($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Menambahkan pemetaan alergen pada menu");
             header('Location: ' . BASEURL . '/menu_alergen');
             exit;
         } else {
@@ -26,6 +27,7 @@ class Menu_alergen extends Controller {
 
     public function hapus($id) {
         if($this->model('MenuAlergen_model')->hapusDataMenuAlergen($id) > 0) {
+            $this->model('Log_model')->catatLog("Menghapus pemetaan menu alergen ID: " . $id);
             header('Location: ' . BASEURL . '/menu_alergen');
             exit;
         } else {
@@ -36,6 +38,7 @@ class Menu_alergen extends Controller {
 
     public function ubah() {
         if($this->model('MenuAlergen_model')->ubahDataMenuAlergen($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Mengubah pemetaan menu alergen ID: " . $_POST['id_menu_alergen']);
             header('Location: ' . BASEURL . '/menu_alergen');
             exit;
         } else {

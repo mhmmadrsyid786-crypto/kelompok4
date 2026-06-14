@@ -27,7 +27,7 @@
                             <td><?= $d['total_kalori']; ?> kcal</td>
                             <td><?= $d['nama_petugas']; ?></td>
                             <td>
-                                <span style="background: <?= $d['status'] == 'Didistribusikan' ? '#86efac' : '#fde047'; ?>; color: #000; padding:3px 8px; border-radius:10px; font-size:0.8rem; font-weight:bold;">
+                                <span style="background: <?= $d['status'] == 'Sudah Dibagikan' ? '#86efac' : '#fde047'; ?>; color: #000; padding:3px 8px; border-radius:10px; font-size:0.8rem; font-weight:bold;">
                                     <?= $d['status']; ?>
                                 </span>
                             </td>
@@ -92,8 +92,8 @@
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Status</label>
                         <select name="status" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="Menunggu">Menunggu</option>
-                            <option value="Didistribusikan">Didistribusikan</option>
+                            <option value="Belum Dibagikan">Belum Dibagikan</option>
+                            <option value="Sudah Dibagikan">Sudah Dibagikan</option>
                         </select>
                     </div>
                     <div style="text-align: right;">
@@ -155,8 +155,8 @@
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Status</label>
                         <select name="status" id="edit_status" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="Menunggu">Menunggu</option>
-                            <option value="Didistribusikan">Didistribusikan</option>
+                            <option value="Belum Dibagikan">Belum Dibagikan</option>
+                            <option value="Sudah Dibagikan">Sudah Dibagikan</option>
                         </select>
                     </div>
                     <div style="text-align: right;">

@@ -17,6 +17,7 @@ class Distribusi extends Controller {
 
     public function tambah() {
         if($this->model('Distribusi_model')->tambahDataDistribusi($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Menambahkan data distribusi / pengiriman");
             header('Location: ' . BASEURL . '/distribusi');
             exit;
         } else {
@@ -27,6 +28,7 @@ class Distribusi extends Controller {
 
     public function hapus($id) {
         if($this->model('Distribusi_model')->hapusDataDistribusi($id) > 0) {
+            $this->model('Log_model')->catatLog("Menghapus data distribusi ID: " . $id);
             header('Location: ' . BASEURL . '/distribusi');
             exit;
         } else {
@@ -37,6 +39,7 @@ class Distribusi extends Controller {
 
     public function ubah() {
         if($this->model('Distribusi_model')->ubahDataDistribusi($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Mengubah data distribusi ID: " . $_POST['id_distribusi']);
             header('Location: ' . BASEURL . '/distribusi');
             exit;
         } else {

@@ -55,6 +55,7 @@
                         <select name="role" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="admin">Administrator</option>
                             <option value="petugas_stok">Petugas Stok / Dapur</option>
+                            <option value="petugas_distribusi">Petugas Distribusi</option>
                         </select>
                     </div>
                     <div style="text-align: right;">
@@ -89,6 +90,7 @@
                         <select name="role" id="edit_role" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="admin">Administrator</option>
                             <option value="petugas_stok">Petugas Stok / Dapur</option>
+                            <option value="petugas_distribusi">Petugas Distribusi</option>
                         </select>
                     </div>
                     <div style="text-align: right;">

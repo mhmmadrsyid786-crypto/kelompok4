@@ -24,7 +24,7 @@ class Dashboard extends Controller {
         $db->query("SELECT jenis_kelamin, COUNT(*) as jumlah FROM siswa GROUP BY jenis_kelamin");
         $data['chart_gender'] = json_encode($db->resultSet());
 
-        $db->query("SELECT tingkat_alergi, COUNT(*) as jumlah FROM alergi_siswa GROUP BY tingkat_alergi");
+        $db->query("SELECT master_sekolah.nama_sekolah as sekolah, COUNT(*) as jumlah FROM alergi_siswa JOIN master_sekolah ON alergi_siswa.id_sekolah = master_sekolah.id_sekolah GROUP BY alergi_siswa.id_sekolah");
         $data['chart_alergi'] = json_encode($db->resultSet());
 
         $db->query("SELECT nama_bahan, jumlah_stok FROM stok_bahan LIMIT 6");

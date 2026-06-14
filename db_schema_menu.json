@@ -1,0 +1,114 @@
+[
+    {
+        "Field": "id_menu",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "PRI",
+        "Default": null,
+        "Extra": "auto_increment"
+    },
+    {
+        "Field": "nama_menu",
+        "Type": "varchar(100)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "jenjang",
+        "Type": "enum('TK','SD','SMP','SMK')",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "kategori",
+        "Type": "enum('Makanan Utama','Lauk','Sayur','Buah','Minuman')",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "deskripsi",
+        "Type": "text",
+        "Null": "YES",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "kalori",
+        "Type": "int(11)",
+        "Null": "NO",
+        "Key": "",
+        "Default": null,
+        "Extra": ""
+    },
+    {
+        "Field": "protein",
+        "Type": "decimal(5,2)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0.00",
+        "Extra": ""
+    },
+    {
+        "Field": "lemak",
+        "Type": "decimal(5,2)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0.00",
+        "Extra": ""
+    },
+    {
+        "Field": "karbohidrat",
+        "Type": "decimal(5,2)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0.00",
+        "Extra": ""
+    },
+    {
+        "Field": "vitamin",
+        "Type": "decimal(5,2)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0.00",
+        "Extra": ""
+    },
+    {
+        "Field": "berat_porsi",
+        "Type": "int(11)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0",
+        "Extra": ""
+    },
+    {
+        "Field": "harga",
+        "Type": "decimal(10,2)",
+        "Null": "YES",
+        "Key": "",
+        "Default": "0.00",
+        "Extra": ""
+    },
+    {
+        "Field": "status",
+        "Type": "enum('Aktif','Nonaktif')",
+        "Null": "YES",
+        "Key": "",
+        "Default": "Aktif",
+        "Extra": ""
+    },
+    {
+        "Field": "created_at",
+        "Type": "timestamp",
+        "Null": "NO",
+        "Key": "",
+        "Default": "CURRENT_TIMESTAMP",
+        "Extra": ""
+    }
+]

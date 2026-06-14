@@ -10,7 +10,7 @@
                             <th>No</th>
                             <th>Nama Siswa</th>
                             <th>Alergen (Alergi)</th>
-                            <th>Tingkat</th>
+                            <th>Sekolah</th>
                             <th>Catatan</th>
                             <th>Aksi</th>
                         </tr>
@@ -21,14 +21,10 @@
                             <td><?= $i++; ?></td>
                             <td><?= $as['nama_siswa']; ?></td>
                             <td><?= $as['nama_alergi']; ?></td>
-                            <td>
-                                <span style="background: <?= $as['tingkat_alergi'] == 'Berat' ? '#fca5a5' : ($as['tingkat_alergi'] == 'Sedang' ? '#fde047' : '#86efac'); ?>; color: #000; padding:3px 8px; border-radius:10px; font-size:0.8rem; font-weight:bold;">
-                                    <?= $as['tingkat_alergi']; ?>
-                                </span>
-                            </td>
+                            <td><?= $as['nama_sekolah']; ?></td>
                             <td><?= $as['catatan']; ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $as['id_alergi_siswa']; ?>', '<?= $as['id_siswa']; ?>', '<?= $as['id_alergi']; ?>', '<?= $as['tingkat_alergi']; ?>', '<?= htmlspecialchars($as['catatan'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="#" onclick="openUpdateModal('<?= $as['id_alergi_siswa']; ?>', '<?= $as['id_siswa']; ?>', '<?= $as['id_alergi']; ?>', '<?= htmlspecialchars($as['catatan'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
                                 <a href="<?= BASEURL; ?>/alergi_siswa/hapus/<?= $as['id_alergi_siswa']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data pantangan alergi siswa ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
@@ -62,14 +58,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Tingkat Keparahan</label>
-                        <select name="tingkat_alergi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="Ringan">Ringan (Tidak Membahayakan)</option>
-                            <option value="Sedang">Sedang (Ada Reaksi Signifikan)</option>
-                            <option value="Berat">Berat (Sangat Berbahaya / Anafilaksis)</option>
-                        </select>
-                    </div>
+
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Catatan Khusus</label>
                         <textarea name="catatan" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary); height: 80px; resize: vertical;"></textarea>
@@ -107,14 +96,7 @@
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div style="margin-bottom: 15px;">
-                        <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Tingkat Keparahan</label>
-                        <select name="tingkat_alergi" id="edit_tingkat" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
-                            <option value="Ringan">Ringan (Tidak Membahayakan)</option>
-                            <option value="Sedang">Sedang (Ada Reaksi Signifikan)</option>
-                            <option value="Berat">Berat (Sangat Berbahaya / Anafilaksis)</option>
-                        </select>
-                    </div>
+
                     <div style="margin-bottom: 20px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Catatan Khusus</label>
                         <textarea name="catatan" id="edit_catatan" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary); height: 80px; resize: vertical;"></textarea>
@@ -128,12 +110,11 @@
         </div>
 
         <script>
-            function openUpdateModal(id, id_siswa, id_alergi, tingkat, catatan) {
+            function openUpdateModal(id, id_siswa, id_alergi, catatan) {
                 document.getElementById('modalEdit').style.display = 'flex';
                 document.getElementById('edit_id').value = id;
                 document.getElementById('edit_id_siswa').value = id_siswa;
                 document.getElementById('edit_id_alergi').value = id_alergi;
-                document.getElementById('edit_tingkat').value = tingkat;
                 document.getElementById('edit_catatan').value = catatan;
             }
         </script>

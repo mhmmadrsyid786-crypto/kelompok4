@@ -16,6 +16,7 @@ class Alergi_siswa extends Controller {
 
     public function tambah() {
         if($this->model('AlergiSiswa_model')->tambahDataAlergiSiswa($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Menambahkan intoleransi alergi untuk siswa");
             header('Location: ' . BASEURL . '/alergi_siswa');
             exit;
         } else {
@@ -26,6 +27,7 @@ class Alergi_siswa extends Controller {
 
     public function hapus($id) {
         if($this->model('AlergiSiswa_model')->hapusDataAlergiSiswa($id) > 0) {
+            $this->model('Log_model')->catatLog("Menghapus intoleransi alergi ID: " . $id);
             header('Location: ' . BASEURL . '/alergi_siswa');
             exit;
         } else {
@@ -36,6 +38,7 @@ class Alergi_siswa extends Controller {
 
     public function ubah() {
         if($this->model('AlergiSiswa_model')->ubahDataAlergiSiswa($_POST) > 0) {
+            $this->model('Log_model')->catatLog("Mengubah intoleransi alergi ID: " . $_POST['id_alergi_siswa']);
             header('Location: ' . BASEURL . '/alergi_siswa');
             exit;
         } else {
