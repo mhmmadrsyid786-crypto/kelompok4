@@ -1,4 +1,4 @@
-        <div class="glass-panel-widget" style="width: 100%;">
+        <div class="glass-panel-widget akses-distribusi" style="width: 100%;">
             <div style="display:flex; justify-content: space-between; align-items:center;">
                 <h3 style="color:var(--text-primary); font-family: 'Outfit';">Status Distribusi Makanan</h3>
                 <a href="#" onclick="document.getElementById('modalTambah').style.display='flex'; return false;" class="btn-sm btn-sm-edit" style="padding: 8px 15px;">+ Catat Distribusi</a>
@@ -20,20 +20,20 @@
                     <tbody>
                         <?php foreach($data['distribusi'] as $d) : ?>
                         <tr>
-                            <td><?= $d['tanggal']; ?></td>
-                            <td><?= $d['nama_siswa']; ?></td>
-                            <td><?= $d['nama_menu']; ?></td>
-                            <td><?= $d['jumlah_porsi']; ?></td>
-                            <td><?= $d['total_kalori']; ?> kcal</td>
-                            <td><?= $d['nama_petugas']; ?></td>
+                            <td><?= esc($d['tanggal']); ?></td>
+                            <td><?= esc($d['nama_siswa']); ?></td>
+                            <td><?= esc($d['nama_menu']); ?></td>
+                            <td><?= esc($d['jumlah_porsi']); ?></td>
+                            <td><?= esc($d['total_kalori']); ?> kcal</td>
+                            <td><?= esc($d['nama_petugas']); ?></td>
                             <td>
                                 <span style="background: <?= $d['status'] == 'Sudah Dibagikan' ? '#86efac' : '#fde047'; ?>; color: #000; padding:3px 8px; border-radius:10px; font-size:0.8rem; font-weight:bold;">
-                                    <?= $d['status']; ?>
+                                    <?= esc($d['status']); ?>
                                 </span>
                             </td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $d['id_distribusi']; ?>', '<?= $d['tanggal']; ?>', '<?= $d['id_siswa']; ?>', '<?= $d['id_menu']; ?>', '<?= $d['jumlah_porsi']; ?>', '<?= $d['total_kalori']; ?>', '<?= $d['id_petugas']; ?>', '<?= $d['status']; ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                                <a href="<?= BASEURL; ?>/distribusi/hapus/<?= $d['id_distribusi']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data distribusi ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                                <a href="#" onclick="openUpdateModal('<?= esc($d['id_distribusi']); ?>', '<?= esc($d['tanggal']); ?>', '<?= esc($d['id_siswa']); ?>', '<?= esc($d['id_menu']); ?>', '<?= esc($d['jumlah_porsi']); ?>', '<?= esc($d['total_kalori']); ?>', '<?= esc($d['id_petugas']); ?>', '<?= esc($d['status']); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="<?= BASEURL; ?>/distribusi/hapus/<?= esc($d['id_distribusi']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data distribusi ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -48,6 +48,8 @@
                 <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Catat Distribusi</h3>
                 <form action="<?= BASEURL; ?>/distribusi/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Tanggal</label>
                         <input type="date" name="tanggal" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);" value="<?= date('Y-m-d'); ?>">
@@ -57,7 +59,7 @@
                         <select name="id_siswa" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Siswa --</option>
                             <?php foreach($data['siswa'] as $s) : ?>
-                                <option value="<?= $s['id_siswa']; ?>"><?= $s['nama_siswa']; ?></option>
+                                <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nama_siswa']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -66,7 +68,7 @@
                         <select name="id_menu" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Menu --</option>
                             <?php foreach($data['menu'] as $mn) : ?>
-                                <option value="<?= $mn['id_menu']; ?>"><?= $mn['nama_menu']; ?></option>
+                                <option value="<?= esc($mn['id_menu']); ?>"><?= esc($mn['nama_menu']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -85,7 +87,7 @@
                         <select name="id_petugas" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Petugas --</option>
                             <?php foreach($data['users'] as $u) : ?>
-                                <option value="<?= $u['id_user']; ?>"><?= $u['nama']; ?> (<?= $u['role']; ?>)</option>
+                                <option value="<?= esc($u['id_user']); ?>"><?= esc($u['nama']); ?> (<?= esc($u['role']); ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -110,6 +112,8 @@
                 <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 id="modalTitle" style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit Distribusi</h3>
                 <form action="<?= BASEURL; ?>/distribusi/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_distribusi" id="edit_id">
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Tanggal</label>
@@ -120,7 +124,7 @@
                         <select name="id_siswa" id="edit_id_siswa" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Siswa --</option>
                             <?php foreach($data['siswa'] as $s) : ?>
-                                <option value="<?= $s['id_siswa']; ?>"><?= $s['nama_siswa']; ?></option>
+                                <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nama_siswa']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -129,7 +133,7 @@
                         <select name="id_menu" id="edit_id_menu" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Menu --</option>
                             <?php foreach($data['menu'] as $mn) : ?>
-                                <option value="<?= $mn['id_menu']; ?>"><?= $mn['nama_menu']; ?></option>
+                                <option value="<?= esc($mn['id_menu']); ?>"><?= esc($mn['nama_menu']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -148,7 +152,7 @@
                         <select name="id_petugas" id="edit_id_petugas" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Petugas --</option>
                             <?php foreach($data['users'] as $u) : ?>
-                                <option value="<?= $u['id_user']; ?>"><?= $u['nama']; ?> (<?= $u['role']; ?>)</option>
+                                <option value="<?= esc($u['id_user']); ?>"><?= esc($u['nama']); ?> (<?= esc($u['role']); ?>)</option>
                             <?php endforeach; ?>
                         </select>
                     </div>

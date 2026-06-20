@@ -16,6 +16,7 @@ class Siswa_menu extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('SiswaMenu_model')->tambahSiswaMenu($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menjadwalkan menu untuk siswa");
             $_SESSION['flash_success'] = 'Relasi Siswa & Menu berhasil dijadwalkan!';

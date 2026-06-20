@@ -19,13 +19,13 @@
                         <?php $i=1; foreach($data['alergi_siswa'] as $as) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $as['nama_siswa']; ?></td>
-                            <td><?= $as['nama_alergi']; ?></td>
-                            <td><?= $as['nama_sekolah']; ?></td>
-                            <td><?= $as['catatan']; ?></td>
+                            <td><?= esc($as['nama_siswa']); ?></td>
+                            <td><?= esc($as['nama_alergi']); ?></td>
+                            <td><?= esc($as['nama_sekolah']); ?></td>
+                            <td><?= esc($as['catatan']); ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $as['id_alergi_siswa']; ?>', '<?= $as['id_siswa']; ?>', '<?= $as['id_alergi']; ?>', '<?= htmlspecialchars($as['catatan'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                                <a href="<?= BASEURL; ?>/alergi_siswa/hapus/<?= $as['id_alergi_siswa']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data pantangan alergi siswa ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                                <a href="#" onclick="openUpdateModal('<?= esc($as['id_alergi_siswa']); ?>', '<?= esc($as['id_siswa']); ?>', '<?= esc($as['id_alergi']); ?>', '<?= htmlspecialchars($as['catatan'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="<?= BASEURL; ?>/alergi_siswa/hapus/<?= esc($as['id_alergi_siswa']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data pantangan alergi siswa ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -40,12 +40,14 @@
                 <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Tambah Pantangan / Alergi Siswa</h3>
                 <form action="<?= BASEURL; ?>/alergi_siswa/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Siswa</label>
                         <select name="id_siswa" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Siswa --</option>
                             <?php foreach($data['siswa'] as $s) : ?>
-                                <option value="<?= $s['id_siswa']; ?>"><?= $s['nama_siswa']; ?></option>
+                                <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nama_siswa']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -54,7 +56,7 @@
                         <select name="id_alergi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Alergi --</option>
                             <?php foreach($data['master_alergi'] as $a) : ?>
-                                <option value="<?= $a['id_alergi']; ?>"><?= $a['nama_alergi']; ?></option>
+                                <option value="<?= esc($a['id_alergi']); ?>"><?= esc($a['nama_alergi']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -77,13 +79,15 @@
                 <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 id="modalTitle" style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit Pantangan / Alergi Siswa</h3>
                 <form action="<?= BASEURL; ?>/alergi_siswa/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_alergi_siswa" id="edit_id">
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Siswa</label>
                         <select name="id_siswa" id="edit_id_siswa" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Siswa --</option>
                             <?php foreach($data['siswa'] as $s) : ?>
-                                <option value="<?= $s['id_siswa']; ?>"><?= $s['nama_siswa']; ?></option>
+                                <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nama_siswa']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -92,7 +96,7 @@
                         <select name="id_alergi" id="edit_id_alergi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
                             <option value="">-- Pilih Alergi --</option>
                             <?php foreach($data['master_alergi'] as $a) : ?>
-                                <option value="<?= $a['id_alergi']; ?>"><?= $a['nama_alergi']; ?></option>
+                                <option value="<?= esc($a['id_alergi']); ?>"><?= esc($a['nama_alergi']); ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>

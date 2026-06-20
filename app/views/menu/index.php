@@ -21,15 +21,15 @@
                         <?php $i=1; foreach($data['menu'] as $m) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $m['nama_menu']; ?></td>
-                            <td><?= $m['jenjang']; ?></td>
-                            <td><?= $m['kategori']; ?></td>
-                            <td><?= $m['kalori']; ?> kcal</td>
-                            <td><?= $m['protein']; ?></td>
-                            <td><?= $m['deskripsi']; ?></td>
+                            <td><?= esc($m['nama_menu']); ?></td>
+                            <td><?= esc($m['jenjang']); ?></td>
+                            <td><?= esc($m['kategori']); ?></td>
+                            <td><?= esc($m['kalori']); ?> kcal</td>
+                            <td><?= esc($m['protein']); ?></td>
+                            <td><?= esc($m['deskripsi']); ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $m['id_menu']; ?>', '<?= htmlspecialchars($m['nama_menu'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['jenjang'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['kategori'], ENT_QUOTES); ?>', '<?= $m['kalori']; ?>', '<?= $m['protein']; ?>', '<?= htmlspecialchars($m['deskripsi'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                                <a href="<?= BASEURL; ?>/menu/hapus/<?= $m['id_menu']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                                <a href="#" onclick="openUpdateModal('<?= esc($m['id_menu']); ?>', '<?= htmlspecialchars($m['nama_menu'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['jenjang'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['kategori'], ENT_QUOTES); ?>', '<?= esc($m['kalori']); ?>', '<?= esc($m['protein']); ?>', '<?= htmlspecialchars($m['deskripsi'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="<?= BASEURL; ?>/menu/hapus/<?= esc($m['id_menu']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus menu ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -44,6 +44,8 @@
                 <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Tambah Menu</h3>
                 <form action="<?= BASEURL; ?>/menu/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Menu</label>
                         <input type="text" name="nama_menu" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -82,6 +84,8 @@
                 <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit Menu</h3>
                 <form action="<?= BASEURL; ?>/menu/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_menu" id="edit_id">
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Menu</label>

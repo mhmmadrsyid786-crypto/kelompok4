@@ -18,15 +18,15 @@
                         <?php $i=1; foreach($data['validasi'] as $v) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $v['tanggal']; ?></td>
-                            <td><?= $v['nama_siswa']; ?></td>
-                            <td><?= $v['nama_menu']; ?></td>
+                            <td><?= esc($v['tanggal']); ?></td>
+                            <td><?= esc($v['nama_siswa']); ?></td>
+                            <td><?= esc($v['nama_menu']); ?></td>
                             <td>
                                 <span style="background: <?= $v['status_validasi'] == 'Aman' ? '#86efac' : '#fca5a5'; ?>; color: #000; padding:3px 8px; border-radius:10px; font-size:0.8rem; font-weight:bold;">
-                                    <?= $v['status_validasi']; ?>
+                                    <?= esc($v['status_validasi']); ?>
                                 </span>
                             </td>
-                            <td><?= $v['catatan']; ?></td>
+                            <td><?= esc($v['catatan']); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

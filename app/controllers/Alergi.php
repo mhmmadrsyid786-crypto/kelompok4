@@ -13,6 +13,7 @@ class Alergi extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('Alergi_model')->tambahDataAlergi($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan master alergi baru: " . $_POST['nama_alergi']);
             header('Location: ' . BASEURL . '/alergi');

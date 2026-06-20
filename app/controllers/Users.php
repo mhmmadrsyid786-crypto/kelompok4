@@ -19,6 +19,7 @@ class Users extends Controller
 
     public function tambah()
     {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if ($this->model('User_model')->tambahDataUser($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan user baru: " . $_POST['username']);
             header('Location: ' . BASEURL . '/users');

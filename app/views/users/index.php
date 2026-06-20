@@ -18,12 +18,12 @@
                         <?php $i=1; foreach($data['users'] as $u) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $u['nama']; ?></td>
-                            <td><?= $u['username']; ?></td>
+                            <td><?= esc($u['nama']); ?></td>
+                            <td><?= esc($u['username']); ?></td>
                             <td style="text-transform: capitalize;"><?= str_replace('_', ' ', $u['role']); ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $u['id_user']; ?>', '<?= htmlspecialchars($u['nama'], ENT_QUOTES); ?>', '<?= htmlspecialchars($u['username'], ENT_QUOTES); ?>', '<?= $u['role']; ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                                <a href="<?= BASEURL; ?>/users/hapus/<?= $u['id_user']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                                <a href="#" onclick="openUpdateModal('<?= esc($u['id_user']); ?>', '<?= htmlspecialchars($u['nama'], ENT_QUOTES); ?>', '<?= htmlspecialchars($u['username'], ENT_QUOTES); ?>', '<?= esc($u['role']); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="<?= BASEURL; ?>/users/hapus/<?= esc($u['id_user']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -38,6 +38,8 @@
                 <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Tambah User</h3>
                 <form action="<?= BASEURL; ?>/users/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Lengkap</label>
                         <input type="text" name="nama" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -72,6 +74,8 @@
                 <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 id="modalTitle" style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit User</h3>
                 <form action="<?= BASEURL; ?>/users/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_user" id="edit_id">
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Lengkap</label>

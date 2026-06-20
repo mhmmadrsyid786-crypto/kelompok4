@@ -12,13 +12,14 @@ class Auth extends Controller {
     }
 
     public function login() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         $username = $_POST['username'];
-        $password = $_POST['password']; // dalam real case, gunakan password_verify
+        $password = $_POST['password'];
 
         $userModel = $this->model('User_model');
         $user = $userModel->getUserByUsername($username);
 
-        if($user && $user['password'] === $password) {
+        if($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id_user'];
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['role'] = $user['role'];

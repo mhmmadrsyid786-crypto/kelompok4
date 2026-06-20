@@ -13,6 +13,7 @@ class Menu extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('Menu_model')->tambahDataMenu($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan data menu baru: " . $_POST['nama_menu']);
             $_SESSION['flash'] = 'Berhasil ditambahkan';

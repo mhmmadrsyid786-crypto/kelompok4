@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $data['judul']; ?> - SMART MBG</title>
+    <title><?= esc($data['judul']); ?> - SMART MBG</title>
     <!-- Google Fonts: Oufit & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,12 +111,14 @@
                 
                 <?php if(isset($_SESSION['flash'])) : ?>
                     <div class="flash-msg">
-                        <?= $_SESSION['flash']; ?>
+                        <?= esc($_SESSION['flash']); ?>
                         <?php unset($_SESSION['flash']); ?>
                     </div>
                 <?php endif; ?>
 
                 <form action="<?= BASEURL; ?>/auth/login" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" name="username" id="username" required autocomplete="off" placeholder="Masukkan username">

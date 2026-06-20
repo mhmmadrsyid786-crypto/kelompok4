@@ -24,16 +24,16 @@
                 <tr>
                     <td><?= $i++; ?></td>
                     <td><?= $s['npsn'] ? $s['npsn'] : '-'; ?></td>
-                    <td><?= $s['nama_sekolah']; ?></td>
-                    <td><?= $s['jenjang']; ?></td>
-                    <td><?= $s['jumlah_siswa']; ?></td>
-                    <td><?= $s['status_sekolah']; ?></td>
+                    <td><?= esc($s['nama_sekolah']); ?></td>
+                    <td><?= esc($s['jenjang']); ?></td>
+                    <td><?= esc($s['jumlah_siswa']); ?></td>
+                    <td><?= esc($s['status_sekolah']); ?></td>
                     <td><?= $s['alamat_sekolah'] ? $s['alamat_sekolah'] : '-'; ?></td>
                     <td><?= $s['telepon'] ? $s['telepon'] : '-'; ?></td>
                     <td><?= $s['nama_kepsek'] ? $s['nama_kepsek'] : '-'; ?></td>
                     <td>
-                        <a href="#" onclick="openUpdateModal('<?= $s['id_sekolah']; ?>', '<?= htmlspecialchars($s['npsn'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_sekolah'], ENT_QUOTES); ?>', '<?= $s['jenjang']; ?>', '<?= $s['jumlah_siswa']; ?>', '<?= $s['status_sekolah']; ?>', '<?= htmlspecialchars($s['alamat_sekolah'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['telepon'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_kepsek'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                        <a href="<?= BASEURL; ?>/mastersekolah/hapus/<?= $s['id_sekolah']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus sekolah ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                        <a href="#" onclick="openUpdateModal('<?= esc($s['id_sekolah']); ?>', '<?= htmlspecialchars($s['npsn'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_sekolah'], ENT_QUOTES); ?>', '<?= esc($s['jenjang']); ?>', '<?= esc($s['jumlah_siswa']); ?>', '<?= esc($s['status_sekolah']); ?>', '<?= htmlspecialchars($s['alamat_sekolah'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['telepon'], ENT_QUOTES); ?>', '<?= htmlspecialchars($s['nama_kepsek'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                        <a href="<?= BASEURL; ?>/mastersekolah/hapus/<?= esc($s['id_sekolah']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus sekolah ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -49,6 +49,8 @@
         <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
         <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Tambah Sekolah</h3>
         <form action="<?= BASEURL; ?>/mastersekolah/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
             <div style="margin-bottom: 15px;">
                 <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">NPSN</label>
                 <input type="text" name="npsn" style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -104,6 +106,8 @@
         <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
         <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit Sekolah</h3>
         <form action="<?= BASEURL; ?>/mastersekolah/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
             <input type="hidden" name="id_sekolah" id="edit_id">
             <div style="margin-bottom: 15px;">
                 <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">NPSN</label>

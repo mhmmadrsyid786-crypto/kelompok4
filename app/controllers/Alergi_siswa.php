@@ -15,6 +15,7 @@ class Alergi_siswa extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('AlergiSiswa_model')->tambahDataAlergiSiswa($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan intoleransi alergi untuk siswa");
             header('Location: ' . BASEURL . '/alergi_siswa');

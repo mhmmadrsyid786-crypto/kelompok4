@@ -15,6 +15,7 @@ class Menu_alergen extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('MenuAlergen_model')->tambahDataMenuAlergen($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan pemetaan alergen pada menu");
             header('Location: ' . BASEURL . '/menu_alergen');

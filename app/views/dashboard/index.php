@@ -1,22 +1,22 @@
         <div class="dashboard-cards" style="margin-bottom: 30px;">
             <div class="glass-panel-widget" style="grid-column: 1 / -1;">
-                <h3 style="margin-bottom: 15px; font-size: 1.3rem; color:var(--text-primary); font-family: 'Outfit';">Selamat Datang, <?= $data['nama']; ?>!</h3>
+                <h3 style="margin-bottom: 15px; font-size: 1.3rem; color:var(--text-primary); font-family: 'Outfit';">Selamat Datang, <?= esc($data['nama']); ?>!</h3>
                 <p style="color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem;">Berikut adalah matriks visual kinerja Program Makan Bergizi Gratis (MBG).</p>
             </div>
             
             <div class="glass-panel-widget">
                 <h4 style="color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">Total Distribusi</h4>
-                <div style="font-size: 2rem; font-weight: 700; color: var(--accent-color); font-family: 'Outfit';"><?= $data['distribusi_total']; ?> Log</div>
+                <div style="font-size: 2rem; font-weight: 700; color: var(--accent-color); font-family: 'Outfit';"><?= esc($data['distribusi_total']); ?> Log</div>
             </div>
             
             <div class="glass-panel-widget">
                 <h4 style="color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">Peringatan Stok Gudang</h4>
-                <div style="font-size: 2rem; font-weight: 700; color: <?= $data['stok_kritis'] > 0 ? '#fca5a5' : '#86efac'; ?>; font-family: 'Outfit';"><?= $data['stok_kritis']; ?> Item</div>
+                <div style="font-size: 2rem; font-weight: 700; color: <?= $data['stok_kritis'] > 0 ? '#fca5a5' : '#86efac'; ?>; font-family: 'Outfit';"><?= esc($data['stok_kritis']); ?> Item</div>
             </div>
             
             <div class="glass-panel-widget">
                 <h4 style="color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px;">Siswa Beresiko Alergi</h4>
-                <div style="font-size: 2rem; font-weight: 700; color: #fbbf24; font-family: 'Outfit';"><?= $data['siswa_alergi']; ?> Orang</div>
+                <div style="font-size: 2rem; font-weight: 700; color: #fbbf24; font-family: 'Outfit';"><?= esc($data['siswa_alergi']); ?> Orang</div>
             </div>
         </div>
 

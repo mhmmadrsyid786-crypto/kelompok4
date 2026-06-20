@@ -41,25 +41,25 @@
                         <td><?= $i++; ?></td>
                         <td><?= $sm['tanggal'] ? date('d M Y', strtotime($sm['tanggal'])) : '-'; ?></td>
                         <td>
-                            <strong><?= $sm['nis']; ?></strong><br>
-                            <?= $sm['nama_siswa']; ?>
+                            <strong><?= esc($sm['nis']); ?></strong><br>
+                            <?= esc($sm['nama_siswa']); ?>
                         </td>
-                        <td><?= $sm['jenjang']; ?> - <?= $sm['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan'; ?></td>
+                        <td><?= esc($sm['jenjang']); ?> - <?= $sm['jenis_kelamin'] == 'L' ? 'Laki-Laki' : 'Perempuan'; ?></td>
                         <td>
-                            <strong><?= $sm['nama_sekolah']; ?></strong><br>
+                            <strong><?= esc($sm['nama_sekolah']); ?></strong><br>
                             <span
                                 style="font-size:0.85rem; color:var(--text-secondary);"><?= $sm['alamat_sekolah'] ? $sm['alamat_sekolah'] : 'Alamat belum diatur'; ?></span>
                         </td>
-                        <td><strong style="color:var(--accent-color);"><?= $sm['nama_menu']; ?></strong></td>
+                        <td><strong style="color:var(--accent-color);"><?= esc($sm['nama_menu']); ?></strong></td>
                         <td style="font-size: 0.85rem;">
-                            <?= $sm['deskripsi']; ?><br>
+                            <?= esc($sm['deskripsi']); ?><br>
                             <span style="color:#fbbf24;">Rp <?= number_format($sm['harga'], 0, ',', '.'); ?></span>
                         </td>
                         <td>
                             <a href="#"
-                                onclick="openUpdateModal('<?= $sm['id_siswa_menu']; ?>', '<?= $sm['id_siswa']; ?>', '<?= $sm['id_menu']; ?>', '<?= $sm['tanggal']; ?>', '<?= htmlspecialchars($sm['alamat_sekolah'], ENT_QUOTES); ?>'); return false;"
+                                onclick="openUpdateModal('<?= esc($sm['id_siswa_menu']); ?>', '<?= esc($sm['id_siswa']); ?>', '<?= esc($sm['id_menu']); ?>', '<?= esc($sm['tanggal']); ?>', '<?= htmlspecialchars($sm['alamat_sekolah'], ENT_QUOTES); ?>'); return false;"
                                 class="btn-sm btn-sm-edit">Edit</a>
-                            <a href="<?= BASEURL; ?>/siswa_menu/hapus/<?= $sm['id_siswa_menu']; ?>"
+                            <a href="<?= BASEURL; ?>/siswa_menu/hapus/<?= esc($sm['id_siswa_menu']); ?>"
                                 class="btn-sm btn-sm-delete"
                                 onclick="return confirm('Yakin ingin menghapus relasi ini?');">Hapus</a>
                         </td>
@@ -80,6 +80,8 @@
         <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px;">Tambah Relasi Siswa & Menu</h3>
 
         <form action="<?= BASEURL; ?>/siswa_menu/tambah" method="POST">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
 
             <div style="margin-bottom: 20px;">
                 <label style="display:block; margin-bottom:8px; color:var(--text-secondary);">Pilih Siswa:</label>
@@ -87,7 +89,7 @@
                     style="width:100%; padding:10px; border-radius:8px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:white; font-family:'Inter';">
                     <option value="">-- Silakan Pilih Siswa --</option>
                     <?php foreach ($data['siswa'] as $s): ?>
-                        <option value="<?= $s['id_siswa']; ?>"><?= $s['nis']; ?> - <?= $s['nama_siswa']; ?></option>
+                        <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nis']); ?> - <?= esc($s['nama_siswa']); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -98,7 +100,7 @@
                     style="width:100%; padding:10px; border-radius:8px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:white; font-family:'Inter';">
                     <option value="">-- Silakan Pilih Menu --</option>
                     <?php foreach ($data['menu'] as $m): ?>
-                        <option value="<?= $m['id_menu']; ?>"><?= $m['nama_menu']; ?> (Rp
+                        <option value="<?= esc($m['id_menu']); ?>"><?= esc($m['nama_menu']); ?> (Rp
                             <?= number_format($m['harga'], 0, ',', '.'); ?>)</option>
                     <?php endforeach; ?>
                 </select>
@@ -132,6 +134,8 @@
         <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px;">Edit Relasi Siswa & Menu</h3>
 
         <form action="<?= BASEURL; ?>/siswa_menu/ubah" method="POST">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
             <input type="hidden" name="id_siswa_menu" id="edit_id">
 
             <div style="margin-bottom: 20px;">
@@ -140,7 +144,7 @@
                     style="width:100%; padding:10px; border-radius:8px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:white; font-family:'Inter';">
                     <option value="">-- Silakan Pilih Siswa --</option>
                     <?php foreach ($data['siswa'] as $s): ?>
-                        <option value="<?= $s['id_siswa']; ?>"><?= $s['nis']; ?> - <?= $s['nama_siswa']; ?></option>
+                        <option value="<?= esc($s['id_siswa']); ?>"><?= esc($s['nis']); ?> - <?= esc($s['nama_siswa']); ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -151,7 +155,7 @@
                     style="width:100%; padding:10px; border-radius:8px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.2); color:white; font-family:'Inter';">
                     <option value="">-- Silakan Pilih Menu --</option>
                     <?php foreach ($data['menu'] as $m): ?>
-                        <option value="<?= $m['id_menu']; ?>"><?= $m['nama_menu']; ?> (Rp
+                        <option value="<?= esc($m['id_menu']); ?>"><?= esc($m['nama_menu']); ?> (Rp
                             <?= number_format($m['harga'], 0, ',', '.'); ?>)</option>
                     <?php endforeach; ?>
                 </select>

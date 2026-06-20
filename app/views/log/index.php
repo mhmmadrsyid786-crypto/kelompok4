@@ -16,9 +16,9 @@
                         <?php $i=1; foreach($data['log'] as $l) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $l['waktu']; ?></td>
-                            <td><?= $l['nama']; ?></td>
-                            <td><?= $l['aktivitas']; ?></td>
+                            <td><?= esc($l['waktu']); ?></td>
+                            <td><?= esc($l['nama']); ?></td>
+                            <td><?= esc($l['aktivitas']); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>

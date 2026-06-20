@@ -38,4 +38,21 @@ class Siswa_model {
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+    public function importBatchSiswa($dataArray, $id_sekolah) {
+        $berhasil = 0;
+        foreach($dataArray as $s) {
+            $query = "INSERT IGNORE INTO " . $this->table . " (nis, nama_siswa, id_sekolah, jenis_kelamin) VALUES (:nis, :nama_siswa, :id_sekolah, :jenis_kelamin)";
+            $this->db->query($query);
+            $this->db->bind('nis', $s['nis']);
+            $this->db->bind('nama_siswa', $s['nama_siswa']);
+            $this->db->bind('id_sekolah', $id_sekolah);
+            $this->db->bind('jenis_kelamin', $s['jenis_kelamin']);
+            $this->db->execute();
+            if($this->db->rowCount() > 0) {
+                $berhasil++;
+            }
+        }
+        return $berhasil;
+    }
 }

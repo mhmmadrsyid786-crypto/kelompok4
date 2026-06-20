@@ -16,6 +16,7 @@ class Distribusi extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('Distribusi_model')->tambahDataDistribusi($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan data distribusi / pengiriman");
             header('Location: ' . BASEURL . '/distribusi');

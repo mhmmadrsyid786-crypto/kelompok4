@@ -29,16 +29,16 @@
                         <?php $i=1; foreach($data['stok'] as $b) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $b['nama_bahan']; ?></td>
+                            <td><?= esc($b['nama_bahan']); ?></td>
                             <td>
                                 <span style="color: <?= $b['jumlah_stok'] <= $b['stok_minimum'] ? '#fca5a5' : '#86efac'; ?>; font-weight:bold;">
-                                    <?= $b['jumlah_stok']; ?> <?= $b['satuan']; ?>
+                                    <?= esc($b['jumlah_stok']); ?> <?= esc($b['satuan']); ?>
                                 </span>
                             </td>
-                            <td><?= $b['stok_minimum']; ?> <?= $b['satuan']; ?></td>
-                            <td><?= $b['tanggal_expired']; ?></td>
+                            <td><?= esc($b['stok_minimum']); ?> <?= esc($b['satuan']); ?></td>
+                            <td><?= esc($b['tanggal_expired']); ?></td>
                             <td>
-                                <button onclick="openUpdateModal('<?= $b['id_bahan']; ?>', '<?= $b['nama_bahan']; ?>', '<?= $b['jumlah_stok']; ?>', '<?= $b['tanggal_expired']; ?>')" class="btn-sm btn-sm-edit" style="cursor:pointer;">Update</button>
+                                <button onclick="openUpdateModal('<?= esc($b['id_bahan']); ?>', '<?= esc($b['nama_bahan']); ?>', '<?= esc($b['jumlah_stok']); ?>', '<?= esc($b['tanggal_expired']); ?>')" class="btn-sm btn-sm-edit" style="cursor:pointer;">Update</button>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -54,6 +54,8 @@
                 <h3 id="modalTitle" style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px;">Update Stok</h3>
                 
                 <form action="<?= BASEURL; ?>/stok/update" method="POST">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_bahan" id="upd_id_bahan">
                     
                     <div style="margin-bottom: 20px;">

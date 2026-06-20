@@ -17,11 +17,11 @@
                         <?php $i=1; foreach($data['alergi'] as $m) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
-                            <td><?= $m['nama_alergi']; ?></td>
-                            <td><?= $m['deskripsi']; ?></td>
+                            <td><?= esc($m['nama_alergi']); ?></td>
+                            <td><?= esc($m['deskripsi']); ?></td>
                             <td>
-                                <a href="#" onclick="openUpdateModal('<?= $m['id_alergi']; ?>', '<?= htmlspecialchars($m['nama_alergi'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['deskripsi'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
-                                <a href="<?= BASEURL; ?>/alergi/hapus/<?= $m['id_alergi']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus alergi ini?');" class="btn-sm btn-sm-delete">Hapus</a>
+                                <a href="#" onclick="openUpdateModal('<?= esc($m['id_alergi']); ?>', '<?= htmlspecialchars($m['nama_alergi'], ENT_QUOTES); ?>', '<?= htmlspecialchars($m['deskripsi'], ENT_QUOTES); ?>'); return false;" class="btn-sm btn-sm-edit">Edit</a>
+                                <a href="<?= BASEURL; ?>/alergi/hapus/<?= esc($m['id_alergi']); ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus alergi ini?');" class="btn-sm btn-sm-delete">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -36,6 +36,8 @@
                 <span onclick="document.getElementById('modalTambah').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Tambah Alergi</h3>
                 <form action="<?= BASEURL; ?>/alergi/tambah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Alergi</label>
                         <input type="text" name="nama_alergi" required style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:var(--glass-bg); color:var(--text-primary);">
@@ -58,6 +60,8 @@
                 <span onclick="document.getElementById('modalEdit').style.display='none'" style="position:absolute; right:20px; top:20px; font-size:1.5rem; cursor:pointer; color:var(--text-primary);">&times;</span>
                 <h3 id="modalTitle" style="font-family:'Outfit'; font-size:1.5rem; margin-bottom:20px; color:var(--text-primary);">Edit Alergi</h3>
                 <form action="<?= BASEURL; ?>/alergi/ubah" method="post">
+<input type="hidden" name="csrf_token" value="<?= isset($_SESSION['csrf_token']) ? $_SESSION['csrf_token'] : '' ?>">
+
                     <input type="hidden" name="id_alergi" id="edit_id">
                     <div style="margin-bottom: 15px;">
                         <label style="display:block; margin-bottom:5px; color:var(--text-secondary);">Nama Alergi</label>

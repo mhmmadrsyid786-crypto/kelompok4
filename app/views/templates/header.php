@@ -11,10 +11,15 @@
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* RBAC: Petugas Stok Read-Only Access CSS Hack */
-        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'petugas_stok') : ?>
+        /* RBAC: Read-Only Access CSS Hack */
+        <?php if(isset($_SESSION['role']) && in_array($_SESSION['role'], ['petugas_stok', 'petugas_distribusi'])) : ?>
             .btn-sm-edit, .btn-sm-delete { display: none !important; }
+        <?php endif; ?>
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'petugas_stok') : ?>
             .akses-stok .btn-sm-edit, .akses-stok .btn-sm-delete { display: inline-block !important; }
+        <?php endif; ?>
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === 'petugas_distribusi') : ?>
+            .akses-distribusi .btn-sm-edit, .akses-distribusi .btn-sm-delete { display: inline-block !important; }
         <?php endif; ?>
         /* Override body styles for full dashboard layout */
         body {

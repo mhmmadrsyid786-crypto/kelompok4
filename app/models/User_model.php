@@ -23,7 +23,7 @@ class User_model {
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('username', $data['username']);
-        $this->db->bind('password', $data['password']);
+        $this->db->bind('password', password_hash($data['password'], PASSWORD_DEFAULT));
         $this->db->bind('role', $data['role']);
         $this->db->execute();
         return $this->db->rowCount();
@@ -47,7 +47,7 @@ class User_model {
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('username', $data['username']);
         if(!empty($data['password'])) {
-            $this->db->bind('password', $data['password']);
+            $this->db->bind('password', password_hash($data['password'], PASSWORD_DEFAULT));
         }
         $this->db->bind('role', $data['role']);
         $this->db->bind('id_user', $data['id_user']);

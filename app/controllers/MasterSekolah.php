@@ -11,6 +11,7 @@ class MasterSekolah extends Controller {
     }
 
     public function tambah() {
+        $this->verifyCsrfToken(isset($_POST['csrf_token']) ? $_POST['csrf_token'] : '');
         if($this->model('MasterSekolah_model')->tambahDataSekolah($_POST) > 0) {
             $this->model('Log_model')->catatLog("Menambahkan master sekolah: " . $_POST['nama_sekolah']);
             $_SESSION['flash'] = 'Berhasil ditambahkan';
